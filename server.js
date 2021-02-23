@@ -20,6 +20,7 @@ app.use(methodOverride('_method'))
 // req.body
 //Controllers
 app.use('/dinos', require ('./controllers/dinosController'))
+app.use('/creatures', require('./controllers/creaturesController'))
 // Routes
 app.get('/', (req, res) => {
     // res.sendFile(__dirname + '/views/index.html')
