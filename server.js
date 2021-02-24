@@ -29,7 +29,10 @@ app.get('/', (req, res) => {
 app.get('/anotherpage', (req, res)=> {
     res.render('anotherpage')
 })
-
+//CATCH ALL ROUTE
+app.get('*', (req, res)=> {
+    res.render('404')
+})
 // Start the server!
 app.listen(PORT, () => {
     rowdyResults.print()
