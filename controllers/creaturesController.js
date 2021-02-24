@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const db = require('../models')
 
-
 //CRUD routes for creatures
 
 //Index (Read All) Route 
@@ -23,7 +22,7 @@ router.get('/new', (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const creature = await db.creature.findByPk(req.params.id, { raw: true })
-        res.render('dinos/show', { dino })
+        res.render('creatures/show', { creature })
     } catch (error) {
         console.log(error)
     }
@@ -36,7 +35,7 @@ router.post('/', async (req, res) => {
             type: req.body.type,
             img_url: req.body.img_url
         })
-        res.redirect(`/dinos/${newDino.id}`);
+        res.redirect(`/creatures/${newCreature.id}`);
     } catch (error) {
         console.log(error)
     }
@@ -50,7 +49,7 @@ router.put('/:id', async (req, res) => {
             type: req.body.type,
             img_url: req.body.img_url
         })
-        res.redirect(`/dinos/${req.params.id}`)
+        res.redirect(`/creatures/${req.params.id}`)
     } 
     catch (error) {
         console.log(error)
@@ -62,7 +61,7 @@ router.delete('/:id', async (req, res) => {
     try {
         const creature = await db.creature.findByPk(req.params.id)
         const deleteCreature = await creature.destroy();
-        res.redirect('/dinos')
+        res.redirect('/creatures')
     } catch (error) {
         console.log(error)
     }
